@@ -5,56 +5,40 @@ import java.util.LinkedList;
 
 public class Drink implements Serializable {
 	private static final long serialVersionUID = -8796991257326593544L;
-	private LinkedList<Ingredient> ingr = new LinkedList<Ingredient>();//new Ingredient[1];
-	private String name = "";
-	String nic = "A faggot";
-	String tim = "nic++";
-	private double totalPercent = 0;
-	private int totalParts = 0;
+	private LinkedList<Ingredient> ingredient = new LinkedList<Ingredient>();
+	private LinkedList<Integer> volume = new LinkedList<Integer>();//new Ingredient[1];
+	private String drinkName = "";
 	
-	
-	public void addIngredient(Ingredient _ingr) {
-		//Modify percent and part amounts.
-		totalParts +=_ingr.getParts();
-		totalPercent +=_ingr.getPercent()*_ingr.getParts();
+	public void addIngredient(Ingredient ingr, Integer volume) {
 		//Add ingredient to final list.
-		ingr.add(_ingr);
+		ingredient.add(ingr);
+		this.volume.add(volume);
 	}
 	
-	public void subtractIngredient(Ingredient _ingr, int i) {
-		//Modify percent and part amounts.
-		totalParts-=_ingr.getParts();
-		totalPercent-=_ingr.getPercent()*_ingr.getParts();
+	public void removeIngredient(Ingredient ingr, int i) {
 		//Remove ingredient from list.
-		ingr.remove(i);
+		ingredient.remove(i);
+		volume.remove(i);
 	}
 	
-	public void editIngredient(Ingredient newIngr, int i) {
-		subtractIngredient(ingr.get(i), i);
-		ingr.set(i, newIngr);
-		addIngredient(ingr.get(i));
-	}
-	
-	public void calcTotals() {
-		for( int i = 0; i < ingr.size(); i++) {
-			totalParts += ingr.get(i).getParts();
-			totalPercent += ingr.get(i).getParts()*ingr.get(i).getPercent();
+	public Integer getPercent() {
+		int totalVolume = 0;
+		int alcoholVolume = 0;
+		for (int i = 0; i<ingredient.size(); i++) {
+			totalVolume+=volume.get(i);
+			alcoholVolume+=volume.get(i)*ingredient.get(i).getPercent();
 		}
+		
+		return 0;
 	}
-	
 	
 	
 	//Getters & setters
-	public void setname(String _name) {
-		name = _name;
+	public void setname(String name) {
+		this.drinkName = name;
 	}
 	public String getName() {
-		return name;
+		return drinkName;
 	}
-	public double getPercent(){
-		return totalPercent;
-	}
-	public double getParts() {
-		return totalParts;
-	}
+
 }

@@ -61,7 +61,8 @@ public class AlcCalc extends Activity {
     	EditText ingredientText = (EditText)findViewById(R.id.ingredientEditText);
     	EditText percentText = (EditText)findViewById(R.id.percentEditText);
     	EditText partText = (EditText)findViewById(R.id.partsEditText);
-    	drink.addIngredient(new Ingredient(ingredientText.getText().toString(), Double.parseDouble(percentText.getText().toString()), Integer.parseInt(partText.getText().toString())));
+    	Ingredient i = new Ingredient( ingredientText.getText().toString(), Double.parseDouble(percentText.getText().toString()) );
+    	drink.addIngredient( i, Integer.parseInt(partText.getText().toString()) );
     	//drink.addIngredient(new Ingredient((findViewById(R.id.ingredientEditText).getContext().toString()), (isProof ? Double.parseDouble((findViewById(R.id.percentEditText).getContext().toString()))/2:Double.parseDouble((findViewById(R.id.percentEditText).getContext().toString()))), Integer.parseInt((findViewById(R.id.partsEditText).getContext().toString()))));
     }
     
