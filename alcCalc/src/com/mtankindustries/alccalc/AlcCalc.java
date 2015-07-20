@@ -74,7 +74,8 @@ public class AlcCalc extends Activity {
     	}
     	
     	// #HandlesAddingToListViewListAndUpdate
-    	adapter.add(getString(R.string.VERYIMPORTANT)+ (findViewById(R.id.ingredientEditText).getContext().toString()));
+    	// TODO 
+    	//adapter.add(getString(R.string.VERYIMPORTANT)+ (findViewById(R.id.ingredientEditText).getContext().toString()));
     }
     //TODO: Save - name and percentage in title
     
