@@ -21,17 +21,15 @@ public class Drink implements Serializable {
 		volume.remove(i);
 	}
 	
-	public Integer getPercent() {
+	public Double getPercent() {
 		int totalVolume = 0;
 		int alcoholVolume = 0;
 		for (int i = 0; i<ingredient.size(); i++) {
 			totalVolume+=volume.get(i);
 			alcoholVolume+=volume.get(i)*ingredient.get(i).getPercent();
 		}
-		
-		return 0;
+		return (double)(alcoholVolume*100)/(double)totalVolume;
 	}
-	
 	
 	//Getters & setters
 	public void setname(String name) {

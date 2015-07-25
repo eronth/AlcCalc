@@ -19,7 +19,7 @@ import android.widget.ListView;
 
  
 public class AlcCalc extends Activity {
-	boolean isProof = false;
+	/*boolean isProof = false;
 	// #SingleInstanceOfDrinkUsedToDisplayCurrentDrink
 	private Drink drink = new Drink();
 	// #Adapter
@@ -105,5 +105,5 @@ public class AlcCalc extends Activity {
            //Log.v("Serialization Read Error : ",ex.getMessage());
            //ex.printStackTrace();
         }
-    }
+    }*/
 }

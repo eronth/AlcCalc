@@ -17,4 +17,7 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
+    <color name="primary_dark">#7f8c8d</color>
+    <color name="primary">#ecf0f1</color>
+    <color name="accent">#e67e22</color>
 </resources>
