@@ -32,4 +32,9 @@ public class Ingredient {
 	void setPercent( double newPercent ) {
 		percent = newPercent;
 	}
+	
+	@Override
+	public String toString() {
+		return name+" ("+percent+")";
+	}
 }

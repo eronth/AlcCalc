@@ -22,73 +22,47 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
             <TextView
-		        android:id="@+id/headerText"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Name, 0% Alcohol"
-		        android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:id="@+id/DrinkPercent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".22"
+                android:onClick="tapPercent"
+                android:text="0%"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/DrinkName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".56"
+                android:text="Name"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/DrinkVolume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".22"
+                android:gravity="right"
+                android:text="0 ml"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/modifyLayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-            <EditText
-		        android:id="@+id/percentEditText"
-		        android:layout_width="100px"
-		        android:layout_height="wrap_content"
-		        android:ems="10"
-		        android:inputType="number" >
-		
-		        <requestFocus />
-		    </EditText>
-		    <TextView
-		        android:id="@+id/percentSwitchText"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="%"
-		        android:textAppearance="?android:attr/textAppearanceLarge"
-                android:onClick="tapPercent" />
-		   <EditText
-		        android:id="@+id/partsEditText"
-		        android:layout_width="100px"
-		        android:layout_height="wrap_content"
-		        android:ems="10"
-		        android:inputType="number" >
-		        <requestFocus />
-		    </EditText>
-		   	<TextView
-		        android:id="@+id/partsSwitchText"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Parts"
-		        android:textAppearance="?android:attr/textAppearanceLarge" />
-        </LinearLayout>
-        
+
         <LinearLayout
             android:id="@+id/nameLayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-            <EditText
-		        android:id="@+id/ingredientEditText"
-		        android:layout_width="100px"
-		        android:layout_height="wrap_content"
-		        android:ems="10"
-		        android:inputType="text" >
-		        <requestFocus />
-		    </EditText>
+
 
             <Button
                 android:id="@+id/buttonAddIngredient"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button"
-                android:onClick="addIngr" />
-		    
+                android:onClick="addIngredient"
+                android:text="Button" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ingredientListLayer"
             android:layout_width="match_parent"
@@ -96,19 +70,12 @@
             android:orientation="horizontal" >
 
             <ListView
-                android:id="@+id/listView1"
+                android:id="@+id/listIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
             </ListView>
-           
         </LinearLayout>
-        
     </LinearLayout>
-
-    
-
-    
-
 
 </RelativeLayout>
