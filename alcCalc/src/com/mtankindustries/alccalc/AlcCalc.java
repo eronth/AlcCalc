@@ -80,11 +80,6 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
     public void addIngredient(View view) {
     	DialogFragment df = new AddDrinkFragment();
     	df.show(getFragmentManager(), "testing");
-    	
-    	
-		CharSequence text = "Hello toast!";
-		Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-		toast.show();
     	// Commented out as backup if super kool long line doesn't work.
     	//EditText ingredientText = (EditText)findViewById(R.id.ingredientEditText);
     	//EditText percentText = (EditText)findViewById(R.id.percentEditText);
