@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
  
@@ -51,7 +54,24 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
     	drinkList.setOnItemLongClickListener(new OnItemLongClickListener(){
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				// TODO Auto-generated method stub
+				Toasty("long position: "+position+" id: "+id);
+				new AlertDialog.Builder(AlcCalc.this)
+			    .setTitle("Delete ingredient")
+			    .setMessage("Are you sure you want to delete this ingredient?")
+			    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			            // continue with delete
+			        	Toasty("Delete me!");
+			        }
+			     })
+			    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			            // do nothing
+			        	Toasty("Don't delete me!");
+			        }
+			     })
+			    .setIcon(android.R.drawable.ic_dialog_alert)
+			     .show();
 				return false;
 			}
         });
@@ -80,10 +100,7 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
     public void addIngredient(View view) {
     	DialogFragment df = new AddDrinkFragment();
     	df.show(getFragmentManager(), "testing");
-    	// Commented out as backup if super kool long line doesn't work.
-    	//EditText ingredientText = (EditText)findViewById(R.id.ingredientEditText);
-    	//EditText percentText = (EditText)findViewById(R.id.percentEditText);
-    	//EditText partText = (EditText)findViewById(R.id.partsEditText);
+
     	//if (true) {
     		
     	//} else {
@@ -131,13 +148,21 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
 
 	@Override
 	public void onDialogMessage(String name, Double percent, int volume) {
+		// Add ingredient to the drink.
+		drink.addIngredient(new Ingredient(name, percent), volume);
+		
+		TextView tv = (TextView)findViewById(R.id.DrinkPercent);
+		tv.setText(drink.getPercent().toString()+"%");
+		tv = (TextView)findViewById(R.id.DrinkVolume);
+		tv.setText(drink.getVolume().toString()+" ml");
+		
 		// Change list items to be based on the current list of ingredients.
 		listItems.add(volume + " ml of " + name + " (" + percent + "%)");
-		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
+		//adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
 		ListView ingredientList = (ListView) findViewById(R.id.listIngredients);
 		ingredientList.setAdapter(adapter);
-		Toast toast = Toast.makeText(getApplicationContext(), name+" "+percent+"% "+volume, Toast.LENGTH_SHORT);
-		toast.show();
+		
+		Toasty( name+" "+percent+"% "+volume );
 	}
 	
 	public void Toasty(String message) {

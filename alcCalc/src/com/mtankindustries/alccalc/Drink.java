@@ -28,7 +28,15 @@ public class Drink implements Serializable {
 			totalVolume+=volume.get(i);
 			alcoholVolume+=volume.get(i)*ingredient.get(i).getPercent();
 		}
-		return (double)(alcoholVolume*100)/(double)totalVolume;
+		return (double)(alcoholVolume)/(double)totalVolume;
+	}
+	
+	public Integer getVolume() {
+		int totalVolume = 0;
+		for (int v : volume) {
+			totalVolume += v;
+		}
+		return totalVolume;
 	}
 	
 	//Getters & setters
@@ -38,5 +46,4 @@ public class Drink implements Serializable {
 	public String getName() {
 		return drinkName;
 	}
-
 }
