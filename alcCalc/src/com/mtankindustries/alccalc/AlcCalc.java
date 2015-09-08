@@ -1,4 +1,4 @@
-package com.mtankindustries.alccalc;//comment solomid comment best comment
+package com.mtankindustries.alccalc;// solomid comment best comment
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,9 +14,11 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
  
@@ -35,8 +37,24 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
 
         // #IngredientListAdapterAndListArray
     	adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
-    	ListView list = (ListView)findViewById(R.id.listIngredients);
-    	list.setAdapter(adapter);
+    	ListView drinkList = (ListView)findViewById(R.id.listIngredients);
+    	drinkList.setAdapter(adapter);
+        
+    	drinkList.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				Toasty("position: "+position+" id: "+id);
+			}
+        });
+        
+    	drinkList.setOnItemLongClickListener(new OnItemLongClickListener(){
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+        });
     }
 
     @Override
@@ -58,7 +76,7 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    
     public void addIngredient(View view) {
     	DialogFragment df = new AddDrinkFragment();
     	df.show(getFragmentManager(), "testing");
@@ -87,8 +105,8 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
     	// TODO 
     	//adapter.add(getString(R.string.VERYIMPORTANT)+ (findViewById(R.id.ingredientEditText).getContext().toString()));
     }
-    //TODO: Save - name and percentage in title
     
+    //TODO: Save - name and percentage in title
     private void saveDrink() {
     	String saveName = drink.getName() + "_/" + drink.getPercent();
     	try {
@@ -119,11 +137,16 @@ public class AlcCalc extends Activity implements AddDrinkFragment.Communicator {
 	@Override
 	public void onDialogMessage(String name, Double percent, int volume) {
 		// Change list items to be based on the current list of ingredients.
-		listItems.add(volume + " ml of "+name+" ("+percent+"%)");
+		listItems.add(volume + " ml of " + name + " (" + percent + "%)");
 		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
 		ListView ingredientList = (ListView) findViewById(R.id.listIngredients);
 		ingredientList.setAdapter(adapter);
 		Toast toast = Toast.makeText(getApplicationContext(), name+" "+percent+"% "+volume, Toast.LENGTH_SHORT);
+		toast.show();
+	}
+	
+	public void Toasty(String message) {
+		Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
 		toast.show();
 	}
 }
